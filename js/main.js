@@ -1,14 +1,26 @@
 var canvas = document.querySelector("#myCanvas")
+var eraser = document.querySelector("#a")
+var userColor = document.querySelector("#color")
 var ctx = canvas.getContext("2d")
-var color = "black";
-var lineWidth = "6";
+var color = userColor;
+var penSize = "1";
+var eraserSize = "100"
+var lock = false
 resize();
+userColor.addEventListener("blur", function() {
+  color = this.value;
+
+})
+
 
 window.addEventListener("resize", function(event) {
   resize()
 
 })
-
+eraser.addEventListener("click", function(event) {
+  lock = !lock;
+  this.style.backgroundColor = lock?"red":""
+})
 
 var mouseDown = false;
 var lastPoint = {
@@ -20,6 +32,8 @@ var newPoint = {
   y: undefined
 }
 canvas.addEventListener("mousedown", function(event) {
+  console.log(canvas.offsetLeft)
+
   mouseDown = true;
   if (!mouseDown) return
   lastPoint = {
@@ -33,28 +47,37 @@ canvas.addEventListener("mousemove", function(event) {
     x: event.clientX,
     y: event.clientY
   }
-  drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y, color, lineWidth)
+  if (lock) {
+    drawLine(lastPoint, newPoint, "white", eraserSize)
+  } else {
+    drawLine(lastPoint, newPoint, color, penSize)
+  }
   lastPoint = newPoint
 })
 canvas.addEventListener("mouseup", function(event) {
+  mouseDown = false;
+})
+canvas.addEventListener("mouseleave", function(event) {
   mouseDown = false;
 })
 
 
 
 
+
 function resize() {
+
   canvas.width = document.documentElement.clientWidth
   canvas.height = document.documentElement.clientHeight
 }
 
 
-function drawLine(startX, startY, endX, endY, color, lineWidth) {
+function drawLine(lastPoint, newPoint, color, lineWidth) {
   ctx.beginPath();
   ctx.strokeStyle = color;
   ctx.lineWidth = lineWidth
-  ctx.moveTo(startX, startY);
-  ctx.lineTo(endX, endY);
+  ctx.moveTo(lastPoint.x, lastPoint.y);
+  ctx.lineTo(newPoint.x, newPoint.y);
   ctx.closePath();
   ctx.stroke()
   ctx.closePath()
