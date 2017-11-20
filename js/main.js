@@ -3,13 +3,15 @@ var canvas = document.querySelector("#myCanvas")
 var ctx = canvas.getContext("2d")
 var svg = document.querySelectorAll("svg")
 var colors = document.querySelectorAll("ol.color li")
-var tool = document.querySelector(".tool")
 var colorOl = document.querySelector(".color")
-
+var eraserSizeOl = document.querySelector(".eraserSize")
+var eraserSizes = document.querySelectorAll("ol.eraserSize li")
+var penSizes = document.querySelectorAll("ol.penSize li")
+var penSizeOl = document.querySelector(".penSize")
 //初始化用户数据
 var color = "black"
-var penSize = "7"
-var eraserSize = "20"
+var penSize = "3"
+var eraserSize = "5"
 var eraserEnabled = false
 autoSetCanvasSize();
 //添加取色
@@ -22,13 +24,33 @@ for (var i = 0; i < colors.length; i++) {
     color = this.getAttribute("color")
   })
 }
-svg[0].addEventListener("click", function() {
-  colorOl.classList.toggle("hover")
-})
+//添加橡皮擦大小选择
+for (var i = 0; i < eraserSizes.length; i++) {
+  eraserSizes[i].addEventListener("click", function() {
+    for (var i = 0; i < eraserSizes.length; i++) {
+      eraserSizes[i].classList.remove("active")
+    }
+    this.classList.add("active")
+    eraserSize = this.getAttribute("Size")
+  })
+}
+//添加笔粗细
+for (var i = 0; i < penSizes.length; i++) {
+  penSizes[i].addEventListener("click", function() {
+    for (var i = 0; i < penSizes.length; i++) {
+      penSizes[i].classList.remove("active")
+    }
+    this.classList.add("active")
+    penSize = this.getAttribute("Size")
+  })
+}
 
 
 svg[0].onclick = function() {
   eraserEnabled = false;
+  colorOl.classList.add("hover")
+  penSizeOl.classList.add("hover")
+  eraserSizeOl.classList.remove("hover")
   for (var i = 0; i < svg.length; i++) {
     svg[i].classList.remove("active")
   }
@@ -36,6 +58,9 @@ svg[0].onclick = function() {
 }
 svg[1].onclick = function() {
   eraserEnabled = true;
+  eraserSizeOl.classList.add("hover")
+  colorOl.classList.remove("hover")
+  penSizeOl.classList.remove("hover")
   for (var i = 0; i < svg.length; i++) {
     svg[i].classList.remove("active")
   }
@@ -65,6 +90,8 @@ var newPoint = {
 //监听 pc 端事件
 canvas.addEventListener("mousedown", function(event) {
   colorOl.classList.remove("hover")
+  eraserSizeOl.classList.remove("hover")
+  penSizeOl.classList.remove("hover")
   isDraw = true;
   if (!isDraw) return
   lastPoint = {
@@ -97,6 +124,8 @@ canvas.addEventListener("mouseleave", function(event) {
 //监听移动端事件
 canvas.addEventListener("touchstart", function(event) {
   colorOl.classList.remove("hover")
+  eraserSizeOl.classList.remove("hover")
+  penSizeOl.classList.remove("hover")
   isDraw = true;
   if (!isDraw) return
   lastPoint = {

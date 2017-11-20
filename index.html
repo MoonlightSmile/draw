@@ -27,6 +27,7 @@
     opacity: 0;
     padding: 0 10px;
     transform: all 0.3s;
+    cursor: pointer;
   }
 
   .color li {
@@ -66,6 +67,7 @@
   .color.hover {
     animation: 1s hide forwards;
   }
+
   @keyframes hide {
     from {
       opacity: 0;
@@ -80,6 +82,7 @@
     display: inline-block;
     font-size: 30px;
     margin: 0 10px;
+    cursor: pointer;
   }
 
   .color li.active {
@@ -97,6 +100,95 @@
     top: 0;
     padding: 20px;
     user-select: none;
+  }
+
+  .eraserSize {
+    opacity: 0;
+    transform: all 0.3s;
+    position: absolute;
+    top: 60px;
+    left: 85px;
+    cursor: pointer;
+  }
+
+  .eraserSize li {
+    margin: 14px 0;
+    box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s;
+  }
+
+  .eraserSize .small {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
+
+  .eraserSize .medium {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transform: scale(1.2);
+  }
+
+  .eraserSize .large {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transform: scale(1.4);
+  }
+
+  .eraserSize.hover {
+    animation: 1s hide forwards;
+  }
+
+  .eraserSize li.active {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .penSize {
+    position: absolute;
+    top: 125%;
+    left: 12%;
+    opacity: 0;
+  }
+
+  .penSize li {
+    margin: 20px 0;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+
+  .penSize .small {
+    width: 40px;
+    border: 3px solid rgba(0, 0, 0, 0.3);
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .penSize .medium {
+    width: 50px;
+    border: 4px solid rgba(0, 0, 0, 0.3);
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .penSize .large {
+    width: 60px;
+    border: 5px solid rgba(0, 0, 0, 0.3);
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .penSize .active {
+    transition: all 0.3s;
+    transform: scale(1.1);
+    background: rgba(0, 0, 0, 0.5);
+  }
+  .penSize.hover {
+    animation: 1s hide forwards;
   }
   </style>
   <script src="//at.alicdn.com/t/font_479657_dsil57gxfi0sh5mi.js
@@ -132,6 +224,16 @@
       <li class="red" color="red"></li>
       <li class="blue" color="blue"></li>
       <li class="green" color="green"></li>
+    </ol>
+    <ol class="eraserSize">
+      <li class="small active" Size="5"></li>
+      <li class="medium" Size="10"></li>
+      <li class="large" Size="15"></li>
+    </ol>
+    <ol class="penSize">
+      <li class="small active" Size="3"></li>
+      <li class="medium" Size="5"></li>
+      <li class="large" Size="10"></li>
     </ol>
   </div>
   <script src="js/main.js"></script>
