@@ -24,16 +24,16 @@
 
   .color {
     margin: 20px 0;
-    opacity: 0;
+    display: none;
     padding: 0 10px;
     transform: all 0.3s;
-    cursor: pointer;
   }
 
   .color li {
     margin: 10px 0;
     box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.3);
     transition: all 0.3s;
+    cursor: pointer;
   }
 
   .color>.black {
@@ -65,17 +65,9 @@
   }
 
   .color.hover {
-    animation: 1s hide forwards;
+    display: block
   }
 
-  @keyframes hide {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
 
   .icon {
     transition: all 0.3s;
@@ -96,14 +88,14 @@
 
   .tool {
     position: absolute;
-    height: 100px;
     top: 0;
     padding: 20px;
     user-select: none;
+    margin: 2px;
   }
 
   .eraserSize {
-    opacity: 0;
+    display: none;
     transform: all 0.3s;
     position: absolute;
     top: 60px;
@@ -115,6 +107,7 @@
     margin: 14px 0;
     box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.3);
     transition: all 0.3s;
+    cursor: pointer;
   }
 
   .eraserSize .small {
@@ -138,7 +131,7 @@
   }
 
   .eraserSize.hover {
-    animation: 1s hide forwards;
+    display: block
   }
 
   .eraserSize li.active {
@@ -147,15 +140,15 @@
 
   .penSize {
     position: absolute;
-    top: 125%;
+    top: 80%;
     left: 12%;
-    opacity: 0;
+    display: none;
   }
 
   .penSize li {
     margin: 20px 0;
-    cursor: pointer;
     border-radius: 3px;
+    cursor: pointer;
   }
 
   .penSize .small {
@@ -187,8 +180,9 @@
     transform: scale(1.1);
     background: rgba(0, 0, 0, 0.5);
   }
+
   .penSize.hover {
-    animation: 1s hide forwards;
+    display: block
   }
   </style>
   <script src="//at.alicdn.com/t/font_479657_dsil57gxfi0sh5mi.js
