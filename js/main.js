@@ -45,7 +45,7 @@ for (var i = 0; i < penSizes.length; i++) {
   })
 }
 
-
+//笔
 svg[0].onclick = function() {
   eraserEnabled = false;
   colorOl.classList.toggle("hover")
@@ -56,6 +56,7 @@ svg[0].onclick = function() {
   }
   this.classList.add("active");
 }
+//橡皮擦
 svg[1].onclick = function() {
   eraserEnabled = true;
   eraserSizeOl.classList.toggle("hover")
@@ -66,13 +67,22 @@ svg[1].onclick = function() {
   }
   this.classList.add("active");
 }
+//清除
 svg[2].onclick = function() {
   var pageWidth = document.documentElement.clientWidth
   var pageHeight = document.documentElement.clientHeight
   ctx.clearRect(0, 0, pageWidth, pageHeight)
 }
+//下载
 svg[3].onclick = function() {
-
+    var imgUrl = canvas.toDataURL()
+    var a = document.createElement("a")
+    document.body.appendChild(a)
+    a.href = imgUrl
+    a.download = '我的涂鸦'
+    a.target = "_blank"
+    a.click()
+    document.body.removeChild(a)
 }
 
 
