@@ -23,7 +23,7 @@ for (var i = 0; i < colors.length; i++) {
   })
 }
 svg[0].addEventListener("click", function() {
-  colorOl.classList.add("hover")
+  colorOl.classList.toggle("hover")
 })
 
 
