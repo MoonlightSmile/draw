@@ -48,8 +48,8 @@ for (var i = 0; i < penSizes.length; i++) {
 
 svg[0].onclick = function() {
   eraserEnabled = false;
-  colorOl.classList.add("hover")
-  penSizeOl.classList.add("hover")
+  colorOl.classList.toggle("hover")
+  penSizeOl.classList.toggle("hover")
   eraserSizeOl.classList.remove("hover")
   for (var i = 0; i < svg.length; i++) {
     svg[i].classList.remove("active")
@@ -58,7 +58,7 @@ svg[0].onclick = function() {
 }
 svg[1].onclick = function() {
   eraserEnabled = true;
-  eraserSizeOl.classList.add("hover")
+  eraserSizeOl.classList.toggle("hover")
   colorOl.classList.remove("hover")
   penSizeOl.classList.remove("hover")
   for (var i = 0; i < svg.length; i++) {
@@ -142,7 +142,7 @@ canvas.addEventListener("touchmove", function(event) {
   if (eraserEnabled) {
     drawLine(lastPoint, newPoint, "white", eraserSize)
   } else {
-    // drawCircle(lastPoint, penSize / 2)
+    drawCircle(lastPoint, penSize / 2)
     drawLine(lastPoint, newPoint, color, penSize)
   }
   lastPoint = newPoint
