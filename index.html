@@ -64,7 +64,15 @@
   }
 
   .color.hover {
-    opacity: 1
+    animation: 1s hide forwards;
+  }
+  @keyframes hide {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   .icon {
