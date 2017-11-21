@@ -1,4 +1,4 @@
-™//获取操作 dom
+//获取操作 dom
 var canvas = document.querySelector("#myCanvas")
 var ctx = canvas.getContext("2d")
 var svg = document.querySelectorAll("svg")
